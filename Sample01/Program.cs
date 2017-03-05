@@ -16,9 +16,14 @@ namespace Sample01
 
                 //InsertRecord(db);
 
+                var person = db.Persons.Where(p => p.Name == "Test04").Include("Boards").First();
+                person.AddBoard(new Board { Date = DateTime.Now, Keep = "KEEP" + DateTime.Now.Hour + DateTime.Now.Minute });
+                db.Update(person);
+
+                db.SaveChanges();
+
                 SelectRecordAll(db);
                 //SelectRecordByName(db, "Test03");
-
             }
         }
 
