@@ -2,43 +2,45 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Sample01.Migrations
+namespace KptBoardSystem.Migrations
 {
     public partial class step02 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Boards",
+                name: "KptBards",
                 columns: table => new
                 {
-                    BoardID = table.Column<int>(nullable: false)
+                    KptBoardId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Date = table.Column<DateTime>(nullable: false),
                     Keep = table.Column<string>(nullable: true),
-                    PersonID = table.Column<int>(nullable: false)
+                    Problem = table.Column<string>(nullable: true),
+                    Time = table.Column<DateTime>(nullable: false),
+                    Try = table.Column<string>(nullable: true),
+                    UserId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Boards", x => x.BoardID);
+                    table.PrimaryKey("PK_KptBards", x => x.KptBoardId);
                     table.ForeignKey(
-                        name: "FK_Boards_Persons_PersonID",
-                        column: x => x.PersonID,
-                        principalTable: "Persons",
-                        principalColumn: "PersonId",
+                        name: "FK_KptBards_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Boards_PersonID",
-                table: "Boards",
-                column: "PersonID");
+                name: "IX_KptBards_UserId",
+                table: "KptBards",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Boards");
+                name: "KptBards");
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Sample01.Migrations
+namespace KptBoardSystem.Migrations
 {
     public partial class step01 : Migration
     {
@@ -10,7 +10,7 @@ namespace Sample01.Migrations
         {
             migrationBuilder.AddColumn<int>(
                 name: "Age",
-                table: "Persons",
+                table: "Users",
                 nullable: true);
         }
 
@@ -18,7 +18,7 @@ namespace Sample01.Migrations
         {
             migrationBuilder.DropColumn(
                 name: "Age",
-                table: "Persons");
+                table: "Users");
         }
     }
 }

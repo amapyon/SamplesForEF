@@ -3,30 +3,32 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Sample01;
+using KptBoardSystem;
 
-namespace Sample01.Migrations
+namespace KptBoardSystem.Migrations
 {
-    [DbContext(typeof(KptBoardContext))]
-    [Migration("20170305060915_step00")]
-    partial class step00
+    [DbContext(typeof(KptBoardModel))]
+    [Migration("20170307010943_step01")]
+    partial class step01
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "1.1.0-rtm-22752");
+                .HasAnnotation("ProductVersion", "1.1.1");
 
-            modelBuilder.Entity("Sample01.Person", b =>
+            modelBuilder.Entity("KptBoardModel.User", b =>
                 {
-                    b.Property<int>("PersonId")
+                    b.Property<int>("UserId")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("Age");
 
                     b.Property<string>("Name")
                         .IsRequired();
 
-                    b.HasKey("PersonId");
+                    b.HasKey("UserId");
 
-                    b.ToTable("Persons");
+                    b.ToTable("Users");
                 });
         }
     }
